@@ -1,0 +1,144 @@
+" Plugins
+
+" Install vim-plug if it's not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'do': 'npm install -g typescript typescript-language-server' }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc', { 'do': 'pip3 install --user pynvim' }
+Plug 't9md/vim-choosewin'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'vimwiki/vimwiki'
+Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'itchyny/lightline.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'Shougo/echodoc.vim'
+Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
+
+let mapleader = ","
+
+" Display
+set noshowmode
+
+" Wrap
+set nowrap
+
+" Clipboard
+set clipboard=unnamed
+
+" Tabs
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+
+" Tab Completion
+let g:deoplete#enable_at_startup = 1
+set cot+=preview
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+" Colors
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark
+colorscheme palenight
+let g:lightline = {
+    \ 'colorscheme': 'palenight',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
+
+syntax on
+
+" Gutters
+set number
+set updatetime=100
+
+" Window management
+set splitbelow
+set splitright
+
+map <Left> <C-w>2<
+map <Right> <C-w>2>
+map <Up> <C-w>+
+map <Down> <C-w>-
+
+nmap <Leader>v <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+
+" NERDTree Confirguration
+let g:NERDTreeNodeDelimiter = "\u00a0"
+map <Leader>f :NERDTreeToggle<Enter>
+
+" You complete me
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+
+" VimWiki
+
+map <Leader>w/ :VimwikiSearch /\c
+
+" Javascript
+if executable('typescript-language-server')
+     au User lsp_setup call lsp#register_server({
+        \ 'name': 'javascript support using typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
+        \ })
+endif
+
+let g:javascript_plugin_jsdoc = 1
+
+" Search
+map <Leader>s :Ag 
+
+" Code Actions
+
+map <F2> :LspRename<Enter>
+map <F12> :LspDefinition<Enter>
+map <S-F12> :LspReferences<Enter>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
