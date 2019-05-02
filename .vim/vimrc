@@ -97,6 +97,7 @@ set updatetime=100
 " Window management
 set splitbelow
 set splitright
+set noea
 
 map <Left> <C-w>2<
 map <Right> <C-w>2>
@@ -132,6 +133,8 @@ endif
 let g:javascript_plugin_jsdoc = 1
 
 " Search
+set ignorecase
+set smartcase
 map <Leader>s :Ag 
 
 " Code Actions
@@ -140,5 +143,7 @@ map <F2> :LspRename<Enter>
 map <F12> :LspDefinition<Enter>
 map <S-F12> :LspReferences<Enter>
 
-" Terminal
-tnoremap <Esc> <C-\><C-n>
+" Directories
+set directory=$HOME/.vim/swapfiles//
+set backupdir=$HOME/.vim/backups//
+set undodir=$HOME/.vim/undodir//
