@@ -106,7 +106,7 @@ function! ToggleLineNumbers()
     endif
 endfunction
 
-map <Leader>l :call ToggleLineNumbers()<Cr>
+map <silent> <Leader>l :call ToggleLineNumbers()<Cr>
 
 " Window management
 set splitbelow
