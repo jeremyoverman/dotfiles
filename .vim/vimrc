@@ -8,17 +8,16 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" COC
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+" End COC
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'do': 'npm install -g typescript typescript-language-server' }
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/denite.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc', { 'do': 'pip3 install --user pynvim' }
 Plug 't9md/vim-choosewin'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'vimwiki/vimwiki'
@@ -29,19 +28,20 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'Shougo/echodoc.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'itchyny/calendar.vim'
 call plug#end()
 
 let mapleader = ","
 
 " Display
 set noshowmode
+set cmdheight=2
 
 " Wrap
 set nowrap
@@ -57,7 +57,6 @@ set autoindent
 set smartindent
 
 " Tab Completion
-let g:deoplete#enable_at_startup = 1
 set cot+=preview
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -81,10 +80,11 @@ let g:lightline = {
     \ 'colorscheme': 'palenight',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
+    \   'gitbranch': 'fugitive#head',
+    \   'cocstatus': 'coc#status'
     \ },
     \ }
 
@@ -93,6 +93,17 @@ syntax on
 " Gutters
 set number
 set updatetime=100
+set signcolumn=yes
+
+function! ToggleLineNumbers()
+    if &relativenumber == 1
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunction
+
+map <Leader>l :call ToggleLineNumbers()<Cr>
 
 " Window management
 set splitbelow
@@ -111,24 +122,10 @@ let g:choosewin_overlay_enable = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
 map <Leader>f :NERDTreeToggle<Enter>
 
-" You complete me
-let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
-
 " VimWiki
-
+autocmd BufEnter diary.wiki VimwikiDiaryGenerateLinks
+autocmd FileType calendar nmap <buffer> <CR> :call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>
 map <Leader>w/ :VimwikiSearch /\c
-
-" Javascript
-if executable('typescript-language-server')
-     au User lsp_setup call lsp#register_server({
-        \ 'name': 'javascript support using typescript-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
-        \ })
-endif
 
 let g:javascript_plugin_jsdoc = 1
 
@@ -137,13 +134,11 @@ set ignorecase
 set smartcase
 map <Leader>s :Ag 
 
-" Code Actions
-
-map <F2> :LspRename<Enter>
-map <F12> :LspDefinition<Enter>
-map <S-F12> :LspReferences<Enter>
-
 " Directories
+set undofile
+set backup
+
 set directory=$HOME/.vim/swapfiles//
 set backupdir=$HOME/.vim/backups//
 set undodir=$HOME/.vim/undodir//
+
