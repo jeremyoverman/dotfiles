@@ -97,16 +97,7 @@ syntax on
 set number
 set updatetime=100
 set signcolumn=yes
-
-function! ToggleLineNumbers()
-    if &relativenumber == 1
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-endfunction
-
-map <silent> <Leader>l :call ToggleLineNumbers()<Cr>
+map <silent> <Leader>l :set relativenumber!<Cr>
 
 " Window management
 set splitbelow
