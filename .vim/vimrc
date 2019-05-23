@@ -39,6 +39,9 @@ call plug#end()
 
 let mapleader = ","
 
+" Hacks
+inoremap <C-@> <C-x><C-o>
+
 " Display
 set noshowmode
 set cmdheight=2
