@@ -14,30 +14,41 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " End COC
+Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'itchyny/calendar.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 't9md/vim-choosewin'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'vimwiki/vimwiki'
-Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'itchyny/lightline.vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'Shougo/echodoc.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'itchyny/calendar.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 't9md/vim-choosewin'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/auto-pairs-gentle'
+Plug 'idanarye/vim-merginal'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 call plug#end()
 
 let mapleader = ","
+
+filetype plugin indent on
+
+" Functions
+function Template(path)
+    if line('$') == 1
+        execute '0read' a:path
+    endif
+endfunction
 
 " Hacks
 inoremap <C-@> <C-x><C-o>
@@ -136,3 +147,13 @@ set directory=$HOME/.vim/swapfiles//
 set backupdir=$HOME/.vim/backups//
 set undodir=$HOME/.vim/undodir//
 
+" Git stuff
+nnoremap <Leader>b :MerginalToggle<cr>
+nnoremap <Leader>gs :Gstatus<cr>
+nnoremap <Leader>gc :Gcommit<cr>
+nnoremap <Leader>gp :Gpush<cr>
+nnoremap <Leader>gw :Gwrite<cr>
+
+" Markdown
+let g:mkdp_auto_start=0
+let g:mkdp_auto_close=0
