@@ -14,6 +14,7 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " End COC
+Plug 'niklaas/lightline-gitdiff'
 Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/echodoc.vim'
@@ -87,33 +88,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 colorscheme palenight
-let g:lightline = {
-    \ 'colorscheme': 'palenight',
-    \ 'separator': {'left': "", 'right': ''},
-    \ 'subseparator': { 'left': '', 'right': ''},
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'LightlineFugitive',
-    \   'cocstatus': 'coc#status'
-    \ }
-    \ }
-
-set laststatus=2
-
-function! LightlineFugitive()
-    if exists('*fugitive#head')
-        let branch = fugitive#head()
-        return branch !=# '' ? ' '.branch : ''
-    endif
-    return ''
-endfunction
 
 syntax on
 
@@ -174,3 +150,7 @@ nnoremap <Leader>gw :Gwrite<cr>
 " Markdown
 let g:mkdp_auto_start=0
 let g:mkdp_auto_close=0
+
+" Sources
+so ~/.vim/coc_settings.vim
+so ~/.vim/statusline.vim
