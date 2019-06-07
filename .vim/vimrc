@@ -105,6 +105,8 @@ let g:lightline = {
     \ }
     \ }
 
+set laststatus=2
+
 function! LightlineFugitive()
     if exists('*fugitive#head')
         let branch = fugitive#head()
