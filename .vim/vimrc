@@ -56,6 +56,7 @@ inoremap <C-@> <C-x><C-o>
 " Display
 set noshowmode
 set cmdheight=2
+set showtabline=2
 
 " Wrap
 set nowrap
@@ -92,17 +93,31 @@ set background=dark
 colorscheme palenight
 let g:lightline = {
     \ 'colorscheme': 'palenight',
+    \ 'separator': {'left': "", 'right': ''},
+    \ 'subseparator': { 'left': '', 'right': ''},
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
-    \   'gitbranch': 'fugitive#head',
+    \   'gitbranch': 'LightlineFugitive',
     \   'cocstatus': 'coc#status'
-    \ },
+    \ }
     \ }
 
+function! LightlineFugitive()
+    if exists('*fugitive#head')
+        let branch = fugitive#head()
+        return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
 syntax on
+
+" Movement
+nnoremap j gj
+nnoremap k gk
 
 " Gutters
 set number
