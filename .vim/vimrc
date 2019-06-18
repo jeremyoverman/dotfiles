@@ -158,3 +158,10 @@ so ~/.vim/statusline.vim
 
 " FZF
 nnoremap <leader>o :FZF<CR>
+
+" Mouse
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=sgr
+endif
