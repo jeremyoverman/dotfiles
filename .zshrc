@@ -111,3 +111,5 @@ prompt_end() {
   #Adds the new line and ➜ as the start character.
   printf "\n ➜";
 }
+
+source ~/.zshrc_unmanaged

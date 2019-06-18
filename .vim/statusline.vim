@@ -20,6 +20,7 @@ let g:lightline = {
 let g:lightline.component_function = {
     \   'gitbranch': 'LightlineFugitive',
     \   'LightlineReadonly': 'LightlineReadonly',
+    \   'cwd': 'LightlineCwd',
     \   'cocstatus': 'coc#status',
     \ }
 
@@ -29,7 +30,7 @@ let g:lightline.component = {
 
 let g:lightline.tabline = {
     \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ [ 'gitbranch', 'gitdiff' ], [ 'statusdiagnostic' ], [ 'relativepath' ] ]
+    \ 'right': [ [ 'gitbranch', 'gitdiff' ], [ 'statusdiagnostic' ], [ 'cwd', 'relativepath' ] ]
     \ }
 
 let g:lightline.component_expand = { 'gitdiff': 'lightline#gitdiff#get' }
@@ -55,4 +56,8 @@ function! StatusDiagnostic() abort
     call add(msgs, 'E' . get(info, 'error', 0))
     call add(msgs, 'W' . get(info, 'warning', 0))
     return join(msgs, ' ')
+endfunction
+
+function! LightlineCwd() abort
+    return getcwd()
 endfunction

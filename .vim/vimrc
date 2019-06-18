@@ -38,6 +38,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'idanarye/vim-merginal'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 let mapleader = ","
@@ -154,3 +155,6 @@ let g:mkdp_auto_close=0
 " Sources
 so ~/.vim/coc_settings.vim
 so ~/.vim/statusline.vim
+
+" FZF
+nnoremap <leader>o :FZF<CR>
