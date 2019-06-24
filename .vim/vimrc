@@ -13,6 +13,7 @@ Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 " End COC
 Plug 'niklaas/lightline-gitdiff'
 Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
@@ -142,7 +143,7 @@ set backupdir=$HOME/.vim/backups//
 set undodir=$HOME/.vim/undodir//
 
 " Git stuff
-nnoremap <Leader>b :MerginalToggle<cr>
+nnoremap <Leader>gb :MerginalToggle<cr>
 nnoremap <Leader>gs :Gstatus<cr>
 nnoremap <Leader>gc :Gcommit<cr>
 nnoremap <Leader>gp :Gpush<cr>
