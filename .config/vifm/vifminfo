@@ -1,0 +1,190 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/Users/jeoverma/
+	..
+1562354991
+'b
+	/Users/jeoverma/bin/
+	..
+1562354991
+'h
+	/Users/jeoverma/
+	..
+1562354991
+
+# Bookmarks:
+
+# TUI:
+ar
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/Users/jeoverma/Projects/tms
+	conf
+3
+d/Users/jeoverma/Projects/tms/conf
+	..
+0
+d/Users/jeoverma/Projects/tms
+	test
+8
+d/Users/jeoverma/Projects/tms/test
+	pytest.ini
+4
+d/Users/jeoverma/Projects/tms
+	ssh
+7
+d/Users/jeoverma/Projects/tms/ssh
+	..
+0
+d/Users/jeoverma/Projects/tms
+	perl_mods
+4
+d/Users/jeoverma/Projects/tms/perl_mods
+	..
+0
+d/Users/jeoverma/Projects/tms
+	src
+6
+d/Users/jeoverma/Projects/tms/src
+	..
+0
+d/Users/jeoverma/Projects/tms
+	test
+8
+d/Users/jeoverma/Projects/tms/test
+	..
+0
+d/Users/jeoverma/Projects/tms
+	tms
+9
+d/Users/jeoverma/Projects/tms/ssh
+	..
+0
+d/Users/jeoverma/Projects/tms
+	..
+0
+d/Users/jeoverma/Projects
+	tiamat
+18
+d/Users/jeoverma/Projects/tiamat
+	ui
+7
+d/Users/jeoverma/Projects/tiamat/ui
+	src
+5
+d/Users/jeoverma/Projects/tiamat/ui/src
+	..
+0
+d/Users/jeoverma/Projects/tiamat/ui
+	..
+0
+d/Users/jeoverma/Projects/tiamat
+	..
+0
+d/Users/jeoverma/Projects
+	..
+0
+d/Users/jeoverma
+	.config
+8
+d/Users/jeoverma/.config
+	..
+0
+d/Users/jeoverma
+	Downloads
+17
+d/Users/jeoverma/Downloads
+	15_min_dedup_rpz_blocks.csv
+14
+d
+
+# Right window history (oldest to newest):
+D/Users/jeoverma/Projects/tms
+	src
+6
+D/Users/jeoverma/Projects/tms/src
+	lib
+5
+D/Users/jeoverma/Projects/tms/src/lib
+	threatq_client.py
+12
+D/Users/jeoverma/Projects/tms/test
+	pytest.ini
+4
+D/Users/jeoverma/Projects/tms
+	..
+0
+D/Users/jeoverma/Projects
+	..
+0
+D/Users/jeoverma
+	Projects
+11
+D/Users/jeoverma/Projects
+	dce_time_test
+7
+D/Users/jeoverma/Projects/dce_time_test
+	input.csv
+4
+D
+
+# Command line history (oldest to newest):
+:sp
+:vsp
+:sync
+:tree
+:help
+:q
+
+# Search history (oldest to newest):
+/asdf
+/test
+/tiamat
+/DS
+/config
+/Downloads
+/1566
+/8-26
+
+# Prompt history (oldest to newest):
+pflake8
+p8-26-hosts.csv
+pinput.csv
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/Users/jeoverma/.local/share/vifm/Trash/004_input.csv
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/Users/jeoverma/.local/share/vifm/Trash/000_threatq_client.py
+	/Users/jeoverma/Projects/tms/test/threatq_client.py
+t/Users/jeoverma/.local/share/vifm/Trash/000_jq
+	/Users/jeoverma/Projects/tiamat/jq
+t/Users/jeoverma/.local/share/vifm/Trash/000_.DS_Store
+	/Users/jeoverma/Projects/tiamat/ui/src/.DS_Store
+t/Users/jeoverma/.local/share/vifm/Trash/000_.flake8(1)
+	/Users/jeoverma/.config/.flake8(1)
+t/Users/jeoverma/.local/share/vifm/Trash/000_input.csv
+	/Users/jeoverma/Projects/dce_time_test/input.csv
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].1
+]F
+s0

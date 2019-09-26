@@ -14,10 +14,14 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 " End COC
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'idanarye/vim-vebugger', {'branch': 'develop'}
+Plug 'artur-shaik/vim-javacomplete2'
 Plug 'niklaas/lightline-gitdiff'
 Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
@@ -26,10 +30,6 @@ Plug 'jeremyoverman/palenight.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'itchyny/calendar.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 't9md/vim-choosewin'
@@ -40,11 +40,17 @@ Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'idanarye/vim-merginal'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'scrooloose/syntastic'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 let mapleader = ","
 
 filetype plugin indent on
+
+" Syntax
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Functions
 function Template(path)
@@ -60,6 +66,7 @@ inoremap <C-@> <C-x><C-o>
 set noshowmode
 set cmdheight=2
 set showtabline=2
+set cursorline
 
 " Wrap
 set nowrap
@@ -166,3 +173,9 @@ if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=sgr
 endif
+
+" Prettier
+nnoremap <leader>p :CocCommand prettier.formatFile<cr>
+vnoremap <leader>p <Plug>(coc-format-selected)
+
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
