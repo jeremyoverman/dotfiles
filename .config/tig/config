@@ -1,0 +1,10 @@
+# Bindings
+bind status P ?git push --set-upstream origin %(repo:head)
+bind status a !@git checkout -b %(prompt)
+# This is so hacky
+bind status o +zsh -c "zsh $HOME/.config/tig/open_in_nvim.sh '%(file)'"
+
+# Colors
+color cursor green black bold
+color title-focus black green
+color title-blur green black
