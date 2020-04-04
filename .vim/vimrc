@@ -40,6 +40,7 @@ Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'idanarye/vim-merginal'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/syntastic'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
@@ -48,6 +49,8 @@ call plug#end()
 let mapleader = ","
 
 filetype plugin indent on
+
+nnoremap <esc> :noh<return><esc>
 
 " Syntax
 let g:syntastic_javascript_checkers = ['eslint']
@@ -67,6 +70,7 @@ set noshowmode
 set cmdheight=2
 set showtabline=2
 set cursorline
+set guicursor=
 
 " Wrap
 set nowrap
@@ -169,9 +173,11 @@ nnoremap <leader>o :FZF<CR>
 
 " Mouse
 set mouse+=a
-if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=sgr
+if !has('nvim')
+    if &term =~ '^screen'
+        " tmux knows the extended mouse mode
+        set ttymouse=sgr
+    endif
 endif
 
 " Prettier
@@ -179,3 +185,8 @@ nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 vnoremap <leader>p <Plug>(coc-format-selected)
 
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+vnoremap <leader>l :s/^<Bslash>(<Bslash>s*<Bslash>)[a-z0-9]<Bslash>+<Bslash>./<Bslash>11./g<cr>
+vnoremap <leader>t :s/^<Bslash><Bar><Bslash>t<Bslash><Bar>$/<Bar>/g<cr>
+
+inoremap <c-space> <c-x><c-o>

@@ -120,3 +120,8 @@ export EDITOR="vim"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+## Set nvim server based on tmux window ID
+source ~/.tmux/set_nvim_address.sh
+
+alias nvim="NVIM_LISTEN_ADDRESS=$NVIM_LISTEN_ADDRESS nvim"
